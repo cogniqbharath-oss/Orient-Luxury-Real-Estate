@@ -321,10 +321,6 @@ h2+p {
     gap: 80px;
 }
 
-.contact-form-container p {
-    margin-bottom: 35px;
-}
-
 .lead-form input,
 .lead-form select {
     width: 100%;
