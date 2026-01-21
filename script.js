@@ -76,6 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Suggestion Chips
     window.handleChipClick = (text) => {
+        // Special handling for "Talk to an advisor"
+        if (text === 'Talk to an advisor') {
+            addMessage(text, 'user');
+            addMessage('Sure, here is our contact +971 58 662 2184. Please call on that number.', 'bot');
+            return;
+        }
+
         userInput.value = text;
         handleChat();
     };
