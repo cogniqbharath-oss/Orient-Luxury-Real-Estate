@@ -280,12 +280,6 @@ section {
     display: block;
 }
 
-/* Video Section */
-.video-container {
-    border: 5px solid var(--gold);
-    border-radius: 10px;
-    overflow: hidden;
-}
 
 /* Contact */
 .contact-grid {

@@ -1,7 +1,20 @@
 export async function onRequest(context) {
     const { request, env } = context;
+
+    // CORS Headers
+    const corsHeaders = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+    };
+
+    // Handle OPTIONS (Preflight)
+    if (request.method === "OPTIONS") {
+        return new Response(null, { headers: corsHeaders });
+    }
+
     if (request.method !== "POST") {
-        return new Response("Method Not Allowed", { status: 405 });
+        return new Response("Method Not Allowed", { status: 405, headers: corsHeaders });
     }
 
     try {
@@ -25,7 +38,7 @@ Chatbot Objectives:
 Keep responses professional, premium, and concise. If the user seems ready, encourage them to click the WhatsApp button or provide their phone number.
 `;
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${env.GEMINI_API_KEY}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=${env.API_KEY_orient}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -41,13 +54,13 @@ Keep responses professional, premium, and concise. If the user seems ready, enco
         const aiResponse = data.candidates[0].content.parts[0].text;
 
         return new Response(JSON.stringify({ response: aiResponse }), {
-            headers: { "Content-Type": "application/json" }
+            headers: { ...corsHeaders, "Content-Type": "application/json" }
         });
 
     } catch (error) {
         return new Response(JSON.stringify({ error: error.message }), {
             status: 500,
-            headers: { "Content-Type": "application/json" }
+            headers: { ...corsHeaders, "Content-Type": "application/json" }
         });
     }
 }

@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.appendChild(loadingDiv);
 
         try {
-            const response = await fetch('/api/chat', {
+            const response = await fetch('https://round-rice-813b.cogniq-bharath.workers.dev/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text })
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const waMessage = `Hi Orient Luxury, I'm ${name}. I'm interested in ${intent}. My phone is ${phone}. Please send me the ROI details.`;
         const waUrl = `https://wa.me/971586622184?text=${encodeURIComponent(waMessage)}`;
-        
+
         window.open(waUrl, '_blank');
     });
 
