@@ -12,6 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
         chatbotContainer.style.display = 'none';
     });
 
+    // Clear Chat
+    const clearChat = document.getElementById('clear-chat');
+    clearChat.addEventListener('click', () => {
+        chatMessages.innerHTML = '';
+        // Restore initial greeting
+        addMessage('Hi! Welcome to Orient Luxury Real Estate 👋 How can I help you today?', 'bot');
+        // Restore suggestion chips
+        const chipsDiv = document.createElement('div');
+        chipsDiv.className = 'suggestion-chips';
+        chipsDiv.innerHTML = `
+            <button class="chip" onclick="handleChipClick('Buy property')">Buy property</button>
+            <button class="chip" onclick="handleChipClick('Invest')">Invest</button>
+            <button class="chip" onclick="handleChipClick('Rent')">Rent</button>
+            <button class="chip" onclick="handleChipClick('Talk to an advisor')">Talk to an advisor</button>
+        `;
+        chatMessages.appendChild(chipsDiv);
+    });
+
     // Chat Logic
     const chatMessages = document.getElementById('chat-messages');
     const userInput = document.getElementById('user-input');

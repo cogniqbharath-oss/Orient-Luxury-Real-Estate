@@ -440,12 +440,19 @@ footer {
     font-weight: 700;
 }
 
-#close-chat {
+#close-chat,
+#clear-chat {
     background: transparent;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
     color: var(--dark);
+    transition: var(--transition);
+}
+
+#close-chat:hover,
+#clear-chat:hover {
+    opacity: 0.7;
 }
 
 .chat-messages {
